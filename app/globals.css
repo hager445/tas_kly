@@ -32,29 +32,18 @@
   /* ================================= */
   /* spacing tokens */
   /* containers */
-  /* Top
-13px
-
-Right
-16px
-
-Bottom
-13px
-
-Left
-16px */
-  /* --space-13: 0.8125rem; */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
   --space-16: 1rem;
   --space-20: 1.25rem;
   --space-24: 1.5rem;
   --space-32: 2rem;
   --space-48: 3rem;
-  /* --space-61: 3.8044rem; */
   --space-80: 5rem;
   --space-96: 6rem;
   --space-96: 6rem;
---space-128: 8rem;
---space-144: 9rem;
+  --space-128: 8rem;
+  --space-144: 9rem;
   /* ================= */
   --radius-2: 0.125rem;
   --radius-4: 0.25rem;
