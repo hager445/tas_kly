@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --primary: #003d9b;
+  --primary-container: #0052cc;
+  --surface-highest: #d7e2ff;
+  --surface-medium: #d7e2ff;
+  --surface-low: #f1f3ff;
+  --background: #f9f9ff;
+  --neutral-dark: #041b3c;
+  --neutral-medium: #4f5f7b;
+  --neutral-light: #c3c6d6;
+  --success: #82f9be;
+  --error: #ba1a1a;
+  --warning: #ffb300;
+  /* ===================================================== */
+  /* FONTS */
+  --font-display-lg-size: 3.5rem;
+  --font-display-lg-weight: 700;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-headline-lg-size: 2rem;
+  --font-headline-lg-weight: 600;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --font-title-md-size: 1.125rem;
+  --font-title-md-weight: 600;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --font-body-md-size: 0.875rem;
+  --font-body-md-weight: 400;
+
+  --font-label-sm-size: 0.6875rem;
+  --font-label-sm-weight: 700;
+  /* ================================= */
+  /* spacing tokens */
+  /* containers */
+  /* Top
+13px
+
+Right
+16px
+
+Bottom
+13px
+
+Left
+16px */
+  /* --space-13: 0.8125rem; */
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  /* --space-61: 3.8044rem; */
+  --space-80: 5rem;
+  --space-96: 6rem;
+  --space-96: 6rem;
+--space-128: 8rem;
+--space-144: 9rem;
+  /* ================= */
+  --radius-2: 0.125rem;
+  --radius-4: 0.25rem;
+  --radius-8: 0.5rem;
+  /* borders */
+  --border-1: 1px solid var(--neutral-light);
 }
