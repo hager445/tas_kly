@@ -1,17 +1,35 @@
-import Image from "next/image";
+import AuthPrompt from "./_components/auth/AuthPrompt";
+import Button from "./_components/ui/Button";
+import FormTitle from "./_components/auth/FormTitle";
+import Input from "./_components/auth/Input";
+import PasswordIcon from "./_components/auth/PasswordIcon";
+import ValidationHints from "./_components/auth/ValidationHints";
+import SignUpForm from "./_components/auth/SignUpForm";
 
 export default function Home() {
   const hager: string = "Hager";
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <h1 className="text-5xl font-bold text-black dark:text-white">
-          Welcome to <span className="text-brand">Taskly</span>!
-        </h1>
-        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 text-brand">
-          Hello, {hager}! This is a simple task management app built with
-          Next.js and Tailwind CSS.
-        </p>
+    <div className="w-full ">
+      <main className="flex w-full  items-center justify-center ">
+        {/* <FormTitle
+          mainTitle="Create your workspace"
+          subTitle="Join the editorial approach to task management."
+        /> */}
+        {/* <AuthPrompt link="login" text="Already have an account? " />
+        <Input
+          label="Workspace Name"
+          type="text"
+          placeholder="Enter workspace name"
+          icon={<PasswordIcon />}
+        >
+          3-50 characters, letters only.
+        </Input>
+        {/* <ValidationHints
+          validationList={["3-50 characters", "Letters only"]}
+          checked={false}
+        /> 
+        <Button>Sign up with Google</Button> */}
+        <SignUpForm />
       </main>
     </div>
   );
