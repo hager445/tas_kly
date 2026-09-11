@@ -1,13 +1,12 @@
 "use client";
 import Input from "./Input";
 import ValidationHints from "./ValidationHints";
-import { useFormContext, UseFormWatch } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { SignupFormData } from "@/app/_lib/schemas/signupValidationSchema";
 import PasswordInput from "./PasswordInput";
 
 export default function InputsGroup() {
-  const { watch } = useFormContext();
-
+  const { watch } = useFormContext<SignupFormData>();
   return (
     <div className="w-full flex flex-col gap-y-6 mb-4">
       {/* ===========title============= */}
@@ -43,7 +42,7 @@ export default function InputsGroup() {
           placeholder="confirm your password"
         />
       </div>
-      <ValidationHints watch={watch as UseFormWatch<SignupFormData>} />
+      <ValidationHints watch={watch} />
       {/* ================= submit button=========================== */}
     </div>
   );

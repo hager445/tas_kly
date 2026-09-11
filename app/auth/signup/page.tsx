@@ -8,7 +8,7 @@
 import SignUpForm from "@/app/_components/auth/SignUpForm";
 
 // import { signupAction } from "@/app/actions/auth/signupAction";
-export default function page() {
+export function SignupPage() {
   // const onSubmit = (data: SignupFormData) => {
   //   signupAction(data);
   // };
@@ -34,3 +34,5 @@ export default function page() {
   // );
   return <SignUpForm />;
 }
+
+export default SignupPage;

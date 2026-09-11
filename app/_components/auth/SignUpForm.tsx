@@ -24,7 +24,7 @@ export default function SignUpForm() {
       }
     } catch {}
   };
-  const formMethods = useForm({
+  const formMethods = useForm<SignupFormData>({
     resolver: zodResolver(validationSchema),
     mode: "onTouched",
   });
