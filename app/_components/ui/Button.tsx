@@ -10,7 +10,7 @@ export default function Button({
   return (
     <button
       type={type}
-      className="w-full bg-linear-gradient text-white px-4 py-2 rounded-[8px] hover:bg-primary-dark transition-colors duration-300"
+      className="w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-[8px] hover:bg-primary-dark transition-colors duration-300"
     >
       {children}
     </button>
