@@ -22,11 +22,12 @@ export default function LoginForm() {
   const [errorMsg, setErrorMsg] = useState("");
   const onSubmit = async (data: loginFormData) => {
     try {
-      await loginAction(data);
-    } catch (error) {
-      if (error instanceof Error) {
-        setErrorMsg(error?.message);
+      const result = await loginAction(data);
+      if (result && !result.success) {
+        setErrorMsg(result.message);
       }
+    } catch (error) {
+      throw error;
     }
   };
   const formMethods = useForm({
@@ -64,7 +65,9 @@ export default function LoginForm() {
             Forgot Password?
           </Link>
         </div>
-        <Button type="submit">Log In</Button>
+        <Button style="primary-button" type="submit">
+          Log In
+        </Button>
         {/* =========SERVER ERROR DISPLAY=========== */}
         <TextError serverError={errorMsg} />
         {/* ============ redirect link============= */}

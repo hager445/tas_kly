@@ -43,7 +43,9 @@ export default function SignUpForm() {
         subTitle="Join the editorial approach to task management."
       />
       <InputsGroup />
-      <Button type="submit">Create Account</Button>
+      <Button style="primary-button" type="submit">
+        Create Account
+      </Button>
       {/* ============ redirect link============= */}
       <AuthPrompt
         to="/auth/login"
