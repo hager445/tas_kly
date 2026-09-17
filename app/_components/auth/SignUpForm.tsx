@@ -32,16 +32,15 @@ export default function SignUpForm() {
     <FormContainer
       formMethods={formMethods}
       onSubmit={onSubmit}
-      formContainerProps={{
-        height: "h-auto",
-        width: "sm:max-w-[45%] w-full",
-        padding: "sm:p-[48px]",
-      }}
+      variant="signup"
     >
-      <FormTitle
-        mainTitle="Create your workspace"
-        subTitle="Join the editorial approach to task management."
-      />
+      <div className="w-full pb-10 pt-8 sm:pt-0 sm:text-nowrap text-center items-center gap-2">
+        <FormTitle
+          variant="authTitle"
+          mainTitle="Create your workspace"
+          subTitle="Join the editorial approach to task management."
+        />
+      </div>
       <InputsGroup />
       <Button style="primary-button" type="submit">
         Create Account

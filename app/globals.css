@@ -17,6 +17,7 @@
   --color-neutral-dark: #041b3c;
   --color-neutral-medium: #4f5f7b;
   --color-neutral-light: #c3c6d6;
+  --color-muted: #434654;
   --color-success: #82f9be;
   --color-error: #ba1a1a;
   --color-warning: #ffb300;
@@ -30,13 +31,20 @@
   --text-headline-lg: 2rem;
   --font-weight-headline-lg: 600;
 
+  --text-headline-md: 1.875rem;
+  --font-weight-headline-md: 600;
+
   --text-logo: 1.25rem;
   --font-weight-logo: 700;
 
   --text-title-md: 1.125rem;
-  --font-weight-title-sm: 500;
   --font-weight-title-md: 600;
+
   --text-title-sm: 1rem;
+  --font-weight-title-sm: 500;
+
+  --text-title-light-sm: 1rem;
+  --font-weight-title-light-sm: 400;
 
   --text-body-md: 0.875rem;
   --font-weight-body-md: 400;
@@ -46,6 +54,9 @@
 
   --text-active-side-item: 0.875rem;
   --font-weight-active-side-item: 600;
+
+  --text-label-md: 0.75rem; /* 12px */
+  --font-weight-label-md: 700;
 
   --text-label-sm: 0.6875rem;
   --font-weight-label-sm: 700;
@@ -58,8 +69,10 @@
   /* ================================= */
   /* spacing tokens */
   --w-30: 30rem;
+  /* --w-120: 120rem; */
   --width-nav-item: 16.77%;
   --width-sidebar-item: 14rem;
+  --height-148: 148px;
   /* ================= */
   --radius-2: 0.125rem;
   --radius-4: 0.25rem;
@@ -70,6 +83,7 @@
   --border-width-1: 1px;
   --border-color-default: rgba(0, 0, 0, 0.1);
   --border-color-neutral-light: var(--neutral-light);
+  /* --border-color-surface-low: var(--surface-low); */
   /* ======================== */
 }
 body {
@@ -82,16 +96,19 @@ body {
   @apply w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-8 hover:bg-primary-container transition-colors duration-300;
 }
 @utility sidenav-closed {
-  @apply absolute left-[calc(100%+19px)] top-0 p-2 w-61.5 rounded-tr-6 rounded-br-6 bg-surface-highest;
+  @apply absolute flex-col gap-1 left-[calc(100%+19px)] top-0 p-2 w-61.5 rounded-tr-6 rounded-br-6 bg-surface-highest;
 }
 @utility sidenav-opened {
-  @apply w-full   bg-white px-4 py-2;
+  @apply w-full flex-col gap-1 bg-white px-4 py-2;
 }
 @utility navItem-closed {
-  @apply bg-surface-highest;
+  @apply bg-surface-highest  gap-3 py-2.5 px-3;
 }
 @utility navItem-opened {
   @apply bg-surface-low  rounded-40 px-4 py-2;
+}
+@utility navItem-bottomNavbar {
+  @apply flex-col gap-1   justify-between;
 }
 /* @utility navList-closed {
   @apply w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-8 hover:bg-primary-container transition-colors duration-300;

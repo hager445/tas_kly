@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Button({
+  disabled,
   loading,
   loadingText,
   style,
@@ -8,6 +9,7 @@ export default function Button({
   type,
   onClick,
 }: {
+  disabled?: boolean;
   loading?: boolean;
   loadingText?: string;
   style?: string;
@@ -17,10 +19,11 @@ export default function Button({
 }) {
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      disabled={loading}
+
       type={type}
-      className={`w-full cursor-pointer  px-4 py-2 ${style}`}
+      className={`capitalize cursor-pointer ${style}`}
     >
       {loading ? loadingText : children}
     </button>

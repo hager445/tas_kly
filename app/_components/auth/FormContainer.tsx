@@ -1,32 +1,33 @@
 "use client";
-import {
-  SignupFormData,
-  validationSchema,
-} from "@/app/_lib/schemas/signupValidationSchema";
-import { FormProvider, useForm } from "react-hook-form";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-type FormContainerProps = {
-  width?: string;
-  height?: string;
-  padding?: string;
-};
-export default function FormContainer({
+import { formVariants } from "@/app/_lib/variants/formVariants";
+import {
+  FieldValues,
+  FormProvider,
+  SubmitHandler,
+  UseFormReturn,
+} from "react-hook-form";
+
+export default function FormContainer<T extends FieldValues>({
   formMethods,
   onSubmit,
-  formContainerProps,
+  variant,
   children,
 }: {
-  formMethods: any;
-  onSubmit: any;
-  formContainerProps?: FormContainerProps;
+  formMethods: UseFormReturn<T>;
+  onSubmit: SubmitHandler<T>;
+  variant?: "signup" | "login" | "createNewProject";
   children: React.ReactNode;
 }) {
   return (
     <FormProvider {...formMethods}>
       <form
-        onSubmit={formMethods.handleSubmit(onSubmit)}
-        className={`flex flex-col  items-center gap-1 bg-white rounded-8 ${formContainerProps?.width ? `${formContainerProps.width}` : ""} ${formContainerProps?.height ? `${formContainerProps.height}` : ""} ${formContainerProps?.padding ? `${formContainerProps.padding}` : ""} pb-[74px] px-6`}
+        onSubmit={formMethods.handleSubmit(onSubmit, (errors) => {
+          console.log("VALIDATION ERRORS:", errors);
+        })}
+        className={`flex flex-col  items-center gap-1 bg-white rounded-8  
+          ${variant ? formVariants[variant] : ""}
+         pb-18.5 `}
       >
         {children}
       </form>

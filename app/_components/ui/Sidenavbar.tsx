@@ -5,15 +5,16 @@ import SidebarMenuList from "./SidenavItems";
 import SideAccordian from "./SideAccordian";
 import Logout from "./Logout";
 import Collapse from "./Collapse";
+import { useBurgerMenu } from "@/app/contexts/BurgerMenuContext";
 
 export default function Sidenavbar() {
-  const [isOpened, setIsOpened] = useState(false);
-
+  const [isOpened, setIsOpened] = useState(true);
+  //
   return (
     <div
       className={`p-4  bg-surface-low h-screen flex flex-col mx-auto ${isOpened ? "w-auto" : "w-20"}`}
     >
-      <div className={`${isOpened ? "" : "w-fit mx-auto"}`}>
+      <div className={`${isOpened ? "" : "w-fit mx-auto"} hidden sm:block`}>
         <Logo isOpened={isOpened} />
       </div>
       <div

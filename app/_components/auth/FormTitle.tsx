@@ -1,20 +1,19 @@
+import { formTitleVariants } from "@/app/_lib/variants/formTilteVariants";
 import React from "react";
 
 export default function FormTitle({
   mainTitle,
   subTitle,
+  variant,
 }: {
+  variant: "authTitle" | "createNewProjectTitle";
   mainTitle: string;
   subTitle: string;
 }) {
   return (
-    <div className="w-full pb-10 pt-8 sm:pt-0 sm:text-nowrap flex flex-col items-center justify-center gap-2  text-center ">
-      <h2 className="sm:text-[30px] text-[28px] font-display-lg  text-neutral-dark tracking-[-0.75px] mb-2">
-        {mainTitle}
-      </h2>
-      <p className="text-body-md font-body-md text-neutral-medium ">
-        {subTitle}
-      </p>
+    <div className=" flex flex-col justify-center">
+      <h2 className={formTitleVariants[variant].mainTitle}>{mainTitle}</h2>
+      <p className={formTitleVariants[variant].subTitle}>{subTitle}</p>
     </div>
   );
 }

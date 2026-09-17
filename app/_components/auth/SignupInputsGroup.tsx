@@ -12,21 +12,23 @@ export default function InputsGroup() {
       {/* ===========title============= */}
       {/* ==================== inputs=========================== */}
       <Input
-        inputWidth="sm:w-120 w-full"
+        className="sm:w-120 w-full rounded-md "
         label="name"
+        name="name"
         type="text"
         placeholder="enter your full name"
       >
         3-50 characters, letters only.
       </Input>
       <Input
-        inputWidth="sm:w-120 w-full"
+        className="sm:w-120 w-full rounded-md "
         label="email"
+        name="email"
         type="email"
         placeholder="enter your email address"
       />
       <Input
-        inputWidth="sm:w-120 w-full"
+        className="sm:w-120 w-full rounded-md "
         label="job title"
         name="jobTitle"
         type="text"
@@ -35,7 +37,7 @@ export default function InputsGroup() {
       <div className="w-full sm:w-120 flex flex-col gap-y-6 sm:gap-y-0 sm:flex-row sm:gap-x-1 sm:justify-between">
         <PasswordInput />
         <Input
-          inputWidth=" w-full"
+          className="w-full rounded-md "
           label="confirm password"
           name="confirmPassword"
           type="password"

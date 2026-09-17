@@ -9,8 +9,9 @@ export default function PasswordInput() {
     <>
       <div className="relative">
         <Input
-          inputWidth=" w-full"
+          className=" w-full rounded-md "
           label="password"
+          name="password"
           type={showPassword ? "text" : "password"}
           placeholder="enter your password"
         />

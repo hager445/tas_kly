@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import BarIcon from "./BarIcon";
 
 export default function SidenavItem({
   item,
@@ -10,10 +11,10 @@ export default function SidenavItem({
   itemStyle: string;
 }) {
   return (
-    <li className={`flex items-center gap-3 py-2.5 px-3 w-full ${itemStyle}`}>
-      <Image
+    <li className={` items-center w-full ${itemStyle}`}>
+      <BarIcon
         color="text-neutral-dark"
-        src={item.icon}
+        iconName={item.label}
         alt={item.label}
         width={16}
         height={16}

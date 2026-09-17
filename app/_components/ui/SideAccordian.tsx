@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import SidenavList from "./SidenavList";
+import BarIcon from "./BarIcon";
 const accordianList = [
   {
     icon: "/icons/Container (1).png",
@@ -34,17 +35,15 @@ export default function SideAccordian({ isOpened }: { isOpened: boolean }) {
             <button
               className={`relative bg-surface-highest flex gap-3 items-center p-3 ${isOpened ? "w-full" : "w-fit"}   rounded-tl-6 rounded-tr-6`}
             >
-              <div className="w-[16.6px] h-[14.16px] relative  shrink-0">
-                <Image src={"/icons/Vector.png"} alt="folder icon" fill />
-              </div>
+              <BarIcon iconName="activeProject" width={16.6} height={14.16} />
+
               {isOpened && (
                 <>
                   <span className="text-active-side-item flex-1 min-w-0 truncate capitalize font-active-side-item text-neutral-dark">
                     active project link
                   </span>
-                  <div className="w-[9.6px] h-[4.8px] relative shrink-0">
-                    <Image src={"/icons/SVG.png"} alt="arrow up icon" fill />
-                  </div>
+
+                  <BarIcon iconName="arrowUp" width={11} height={6} />
                 </>
               )}
               {/* ============ show hover list */}

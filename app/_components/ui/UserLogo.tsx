@@ -41,7 +41,7 @@ export default async function UserLogo() {
   const user: User = await getUser();
   console.log(user);
   return (
-    <div className="w-nav-item flex gap-4 items-center justify-end">
+    <div className="w-nav-item flex gap-4 items-center ">
       <div className="">
         <p className="text-neutral-dark text-nowrap text-body-md font-title-md capitalize">
           {user?.user_metadata.name}

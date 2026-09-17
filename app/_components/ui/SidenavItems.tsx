@@ -20,7 +20,7 @@ export default function SidenavItems({ isOpened }: { isOpened: boolean }) {
         return (
           <li
             key={item.icon}
-            className={`flex items-center gap-3 py-2.5 px-3 `}
+            className={`cursor-pointer flex items-center gap-3 py-2.5 px-3 `}
           >
             <Image
               color="text-neutral-dark"
@@ -31,7 +31,7 @@ export default function SidenavItems({ isOpened }: { isOpened: boolean }) {
             />
             {isOpened && (
               <Link
-                href={item.href}
+                href={`/dashboard${item.href}`}
                 className="text-nav-item font-nav-item py-0.5 text-neutral-dark capitalize"
               >
                 {item.label}

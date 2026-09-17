@@ -6,13 +6,13 @@ export default function SidenavList({
   itemStyle,
   style,
 }: {
-  menuList: { icon: string; label: string; href: string }[];
+  menuList: any[];
   style?: string;
   itemStyle: string;
 }) {
   return (
-    <ul className={`flex flex-col gap-1 ${style}`}>
-      {menuList.map((item: { icon: string; label: string; href: string }) => {
+    <ul className={`flex  ${style}`}>
+      {menuList.map((item: any) => {
         return (
           <SidenavItem itemStyle={itemStyle} item={item} key={item?.icon} />
         );

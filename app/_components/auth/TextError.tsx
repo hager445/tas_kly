@@ -1,16 +1,19 @@
 import React from "react";
 export default function TextError({
-  serverError,
-  errors,
+  errorMessage,
+  error,
   name,
 }: {
-  serverError?: string;
-  errors?: any;
+  errorMessage?: string;
+  error?: any;
   name?: string;
 }) {
+  // console.log(errors);
+  // console.log(errors?.[name!]?.message);
+
   return (
-    <span className="text-error text-center text-label-sm">
-      {serverError || errors?.[name!]?.message}
+    <span className="text-error text-left text-label-sm">
+      {errorMessage || error?.message}
     </span>
   );
 }

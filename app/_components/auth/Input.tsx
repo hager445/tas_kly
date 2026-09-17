@@ -1,32 +1,36 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { FieldErrors, FieldValues, useFormContext } from "react-hook-form";
-import ValidationHints from "./ValidationHints";
-import { validationSchema } from "@/app/_lib/schemas/signupValidationSchema";
-import InputValidationError from "./TextError";
+import {
+  FieldPath,
+  FieldValue,
+  FieldValues,
+  useFormContext,
+  UseFormReturn,
+} from "react-hook-form";
 
-export default function Input({
+import TextError from "./TextError";
+
+export default function Input<T extends FieldValues>({
   label,
-  name = label,
-  inputWidth,
+  name,
+  className,
   type,
   placeholder,
-  icon,
   children,
+  requiredBadge,
 }: {
-  label: string;
-  name?: string;
-  inputWidth?: string;
-  type: string;
+  label: FieldPath<T>;
+  name: FieldPath<T>;
+  className?: string;
+  type: "email" | "password" | "text" | "number";
   placeholder: string;
-  icon?: React.ReactNode;
   children?: React.ReactNode;
+  requiredBadge?: React.ReactNode;
 }) {
-  const {
-    register,
-    formState: { errors, touchedFields },
-  } = useFormContext();
+  const { register, getFieldState } = useFormContext<T>();
+  const { error, isTouched } = getFieldState(name);
+  console.log(error);
+  console.log(name);
 
   return (
     <div className="flex flex-col gap-2">
@@ -34,18 +38,18 @@ export default function Input({
         className="uppercase text-label-sm font-label-sm text-neutral-medium"
         htmlFor={label}
       >
-        {label}
+        {label} {requiredBadge}
       </label>
-      {/* <div className="relative"> */}
+
       <input
         {...register(name)}
         type={type}
         placeholder={placeholder}
-        className={`${touchedFields[name] && errors[name]?.message ? "border border-error" : "border-none focus:border-0"} sm:py-3.5 py-4.5 px-4   focus:ring-0 focus:outline-none rounded-md ${inputWidth || "full"} h-12 bg-surface-highest placeholder:text-placeholder placeholder:text-title-sm placeholder:font-body-md`}
+        className={`${isTouched && error?.message ? "border border-error" : "border-none focus:border-0"}  w-full sm:py-3.5 py-4.5 px-4   focus:ring-0 focus:outline-none h-12 bg-surface-highest placeholder:text-placeholder placeholder:text-title-sm placeholder:font-body-md ${className} `}
       />
 
       <span className="text-neutral-light text-label-sm">{children}</span>
-      {errors && <InputValidationError errors={errors} name={name} />}
+      {isTouched && error && <TextError error={error} name={name} />}
     </div>
   );
 }

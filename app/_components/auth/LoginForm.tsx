@@ -20,6 +20,8 @@ import { useState } from "react";
 
 export default function LoginForm() {
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (data: loginFormData) => {
     try {
       const result = await loginAction(data);
@@ -38,20 +40,20 @@ export default function LoginForm() {
     <FormContainer
       formMethods={formMethods}
       onSubmit={onSubmit}
-      formContainerProps={{
-        height: "h-auto",
-        width: "sm:max-w-[576px] w-full",
-        padding: "sm:p-[48px]",
-      }}
+      variant="login"
     >
-      <FormTitle
-        mainTitle="Welcome Back"
-        subTitle="Please enter your details to access your workspace"
-      />
+      <div className="w-full pb-10 pt-8 sm:pt-0 sm:text-nowrap  text-center items-center gap-2">
+        <FormTitle
+          variant="authTitle"
+          mainTitle="Welcome Back"
+          subTitle="Please enter your details to access your workspace"
+        />
+      </div>
       <div className="flex flex-col gap-6">
         <Input
-          inputWidth="sm:w-120 w-full"
+          className="sm:w-120 w-full rounded-md "
           label="email"
+          name="email"
           type="email"
           placeholder="enter your email address"
         />
@@ -65,11 +67,11 @@ export default function LoginForm() {
             Forgot Password?
           </Link>
         </div>
-        <Button style="primary-button" type="submit">
+        <Button disabled={false} style="primary-button" type="submit">
           Log In
         </Button>
         {/* =========SERVER ERROR DISPLAY=========== */}
-        <TextError serverError={errorMsg} />
+        <TextError errorMessage={errorMsg} />
         {/* ============ redirect link============= */}
         <AuthPrompt
           to="/auth/signup"
