@@ -13,7 +13,7 @@ export default function Collapse({
     <>
       <Button
         onClick={() => setIsOpened((opened: boolean) => !opened)}
-        style="flex gap-3 items-center px-2.5 py-3"
+        className="flex gap-3 items-center px-2.5 py-3"
         type="button"
       >
         {isOpened ? (

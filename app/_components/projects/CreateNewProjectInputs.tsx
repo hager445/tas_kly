@@ -85,7 +85,7 @@ export default function CreateNewProjectInputs({
         <div className="flex flex-col items-center mb-0 gap-4 sm:flex-row sm:justify-between pt-4">
           <Button
             disabled={hasErrors || isSubmitting}
-            style="primary-button rounded-2 px-6 py-3 sm:w-fit w-full sm:order-2"
+            className="primary-button rounded-2 px-6 py-3 sm:w-fit w-full sm:order-2"
             type="submit"
           >
             {isSubmitting ? "creating..." : "create project"}

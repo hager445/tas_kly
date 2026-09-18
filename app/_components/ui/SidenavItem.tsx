@@ -5,13 +5,13 @@ import BarIcon from "./BarIcon";
 
 export default function SidenavItem({
   item,
-  itemStyle,
+  className,
 }: {
   item: { icon: string; label: string; href: string };
-  itemStyle: string;
+  className: string;
 }) {
   return (
-    <li className={` items-center w-full ${itemStyle}`}>
+    <li className={` items-center w-full ${className}`}>
       <BarIcon
         color="text-neutral-dark"
         iconName={item.label}

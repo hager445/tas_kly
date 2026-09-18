@@ -4,7 +4,7 @@ export default function Button({
   disabled,
   loading,
   loadingText,
-  style,
+  className,
   children,
   type,
   onClick,
@@ -12,7 +12,7 @@ export default function Button({
   disabled?: boolean;
   loading?: boolean;
   loadingText?: string;
-  style?: string;
+  className?: string;
   children: React.ReactNode;
   type: "button" | "submit" | "reset";
   onClick?: () => void;
@@ -23,7 +23,7 @@ export default function Button({
       onClick={onClick}
 
       type={type}
-      className={`capitalize cursor-pointer ${style}`}
+      className={`capitalize cursor-pointer ${className}`}
     >
       {loading ? loadingText : children}
     </button>

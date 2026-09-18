@@ -2,6 +2,31 @@ import Image from "next/image";
 import React from "react";
 const iconsList = [
   {
+    iconUrl: "/icons/ArrowRight.png",
+    label: "Arrow Right",
+    iconName: "ArrowRight",
+  },
+  {
+    iconUrl: "/icons/ArrowLeft.png",
+    label: "Arrow Left",
+    iconName: "ArrowLeft",
+  },
+  {
+    iconUrl: "/icons/EmptyStateIcon.png",
+    label: "Empty State Icon",
+    iconName: "EmptyStateIcon",
+  },
+  {
+    iconUrl: "/icons/AddCircle.png",
+    label: "add circle",
+    iconName: "addCircle",
+  },
+  {
+    iconUrl: "/icons/Cloud.png",
+    label: "cloud",
+    iconName: "cloud",
+  },
+  {
     iconUrl: "/icons/IconLight.png",
     label: "light",
     iconName: "light",

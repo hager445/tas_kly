@@ -1,8 +1,13 @@
+import PaginatedProjects from "@/app/_components/projects/PaginatedProjects";
 import Button from "@/app/_components/ui/Button";
+import { getProjects } from "@/app/_lib/dashboard/projects/data-service";
 import { routes } from "@/app/_lib/routes/routes";
+import { Project } from "@/app/_types/Project";
 import Link from "next/link";
 
 export default async function page() {
+  const projects: Project[] = await getProjects();
+
   return (
     <div className="">
       <div className="flex justify-between items-end">
@@ -18,12 +23,16 @@ export default async function page() {
         <Link href={`${routes.dashboard.projects.add}`}>
           <Button
             disabled={false}
-            style="primary-button rounded-2 px-6 py-3 w-fit"
+            className="primary-button rounded-2 px-6 py-3 w-fit"
             type="button"
           >
             create new project
           </Button>
         </Link>
+      </div>
+      {/* ============================================= */}
+      <div className="pt-10">
+        <PaginatedProjects projects={projects} />
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ export default function Logout({ isOpened }: { isOpened: boolean }) {
         loading={loading}
         loadingText={"Logging out..."}
         onClick={handleLogout}
-        style="flex gap-3 items-center px-2.5 py-3"
+        className="flex gap-3 items-center px-2.5 py-3"
         type="button"
       >
         <Image
@@ -42,7 +42,7 @@ export default function Logout({ isOpened }: { isOpened: boolean }) {
           </span>
         )}
       </Button>
-      <TextError serverError={error} />
+      <TextError error={error} />
     </>
   );
 }
