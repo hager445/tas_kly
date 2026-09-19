@@ -42,7 +42,7 @@ export default function SignUpForm() {
         />
       </div>
       <InputsGroup />
-      <Button style="primary-button" type="submit">
+      <Button className="primary-button" type="submit">
         Create Account
       </Button>
       {/* ============ redirect link============= */}

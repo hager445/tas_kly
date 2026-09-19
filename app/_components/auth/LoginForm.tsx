@@ -67,7 +67,7 @@ export default function LoginForm() {
             Forgot Password?
           </Link>
         </div>
-        <Button disabled={false} style="primary-button" type="submit">
+        <Button disabled={false} className="primary-button" type="submit">
           Log In
         </Button>
         {/* =========SERVER ERROR DISPLAY=========== */}

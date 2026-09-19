@@ -14,7 +14,7 @@ export default function SidenavList({
     <ul className={`flex  ${style}`}>
       {menuList.map((item: any) => {
         return (
-          <SidenavItem itemStyle={itemStyle} item={item} key={item?.icon} />
+          <SidenavItem className={itemStyle} item={item} key={item?.icon} />
         );
       })}
     </ul>
