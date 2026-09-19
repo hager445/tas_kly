@@ -12,14 +12,15 @@ import BarIcon from "../ui/BarIcon";
 import CreateNewProjectInputs from "./CreateNewProjectInputs";
 import { createNewProjectAction } from "@/app/actions/dashboard/createNewProjectAction";
 import { useState } from "react";
+import { usePaginationContext } from "@/app/contexts/PaginationContext";
 
 export default function CreateNewProjectForm() {
   const [creationErrorMessage, setCreationErrorMessage] = useState("");
   const [successState, setSuccessState] = useState("");
-
+  const { currentPage } = usePaginationContext();
   const onSubmit = async (data: newProjectFormData) => {
     try {
-      const res = await createNewProjectAction(data);
+      const res = await createNewProjectAction(data, currentPage);
       if (!res.success) setCreationErrorMessage(res.message);
       setSuccessState(res.message);
     } catch (error) {

@@ -4,7 +4,10 @@ import { createNewProject } from "@/app/_lib/dashboard/projects/data-service";
 import { newProjectFormData } from "@/app/_lib/schemas/createProjectValidationSchema";
 import { redirect } from "next/navigation";
 
-export async function createNewProjectAction(formData: newProjectFormData) {
+export async function createNewProjectAction(
+  formData: newProjectFormData,
+  currentPage: number,
+) {
   try {
     await createNewProject(formData);
   } catch (error) {
@@ -17,5 +20,5 @@ export async function createNewProjectAction(formData: newProjectFormData) {
     };
   }
 
-  redirect("/dashboard/projects");
+  redirect(`/dashboard/projects?page=${currentPage}`);
 }

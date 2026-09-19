@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import BarIcon from "./BarIcon";
 import Button from "./Button";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePaginationContext } from "@/app/contexts/PaginationContext";
 
 export default function Pagination({
   listLength = 3,
@@ -14,7 +16,7 @@ export default function Pagination({
   setStartPoint: any;
   setEndPoint: any;
 }) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const { currentPage, setCurrentPage } = usePaginationContext();
   const numberOfPages = Math.ceil(listLength / itemsPerPage);
   const paginationButtons = Array.from(
     { length: numberOfPages },
@@ -24,14 +26,8 @@ export default function Pagination({
   const showRightDots =
     numberOfPages > 3 && currentPage < paginationButtons.length - 1;
   const lastIndex = paginationButtons.length - 1;
-  const showWindowButtons = paginationButtons.slice(
-    1,
-    paginationButtons.length - 1,
-  );
-  //   const lastWindowButton = showWindowButtons[showWindowButtons.length - 1];
-  //   const startCollapse = showWindowButtons.length > 1;
   const moveToRight = () => {
-    setCurrentPage((c) => (c < paginationButtons.length ? c + 1 : c));
+    setCurrentPage((c: number) => (c < paginationButtons.length ? c + 1 : c));
   };
   const moveToLeft = () => {
     setCurrentPage((c) => (c > 1 ? c - 1 : c));
@@ -43,6 +39,17 @@ export default function Pagination({
     console.log(currentPage);
   }, [currentPage, itemsPerPage, setStartPoint, setEndPoint]);
 
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const handlePageChange = (currentPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", String(currentPage));
+    router.push(`${pathname}?${params.toString()}`);
+  };
+  useEffect(() => {
+    handlePageChange(currentPage);
+  }, [currentPage]);
   return (
     <div className="p-8 w-full ">
       <div className="ml-auto w-fit flex items-center gap-2">
@@ -79,27 +86,31 @@ export default function Pagination({
             {paginationButtons
               .slice(1, paginationButtons.length - 1)
               .map((btn, i) => {
+                const pageIndex = i;
+                const isCurrentButton = currentPage - 2 === pageIndex;
                 return (
-                  <div
-                    key={btn}
-                    className={`w-8 h-8 rounded-2 border border-neutral-light/30 flex items-center justify-center ${
-                      currentPage === btn ? "bg-primary" : "bg-transparent"
-                    }`}
-                  >
-                    <Button
-                      className={`text-label-md font-label-md ${
-                        currentPage === btn ? "text-white" : "text-muted"
+                  isCurrentButton && (
+                    <div
+                      key={btn}
+                      className={`w-8 h-8 rounded-2 border border-neutral-light/30 flex items-center justify-center ${
+                        isCurrentButton ? "bg-primary" : "bg-transparent"
                       }`}
-                      type="button"
-                      onClick={() => setCurrentPage(i + 1)}
                     >
-                      {btn}
-                    </Button>
-                  </div>
+                      <Button
+                        className={`text-label-md font-label-md ${
+                          isCurrentButton ? "text-white" : "text-muted"
+                        }`}
+                        type="button"
+                      >
+                        {btn}
+                      </Button>
+                    </div>
+                  )
                 );
               })}
           </>
         )}
+
         {showRightDots && (
           <>
             <div

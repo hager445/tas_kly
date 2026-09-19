@@ -12,7 +12,6 @@ export default function PaginatedProjects({
 }) {
   const [startPoint, setStartPoint] = useState(0);
   const [endPoint, setEndPoint] = useState(projects.length);
-  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   return (
     <div>
@@ -21,7 +20,6 @@ export default function PaginatedProjects({
         startPoint={startPoint}
         endPoint={endPoint}
         itemsPerPage={itemsPerPage}
-        // setCurrentPage={setCurrentPage}
       />
       <div className="mt-[70.5px]">
         <Pagination
@@ -29,7 +27,6 @@ export default function PaginatedProjects({
           itemsPerPage={itemsPerPage}
           setStartPoint={setStartPoint}
           setEndPoint={setEndPoint}
-          // currentPage={currentPage}
         />
       </div>
     </div>
