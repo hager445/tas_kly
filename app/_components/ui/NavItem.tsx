@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import BarIcon from "./BarIcon";
 
-export default function SidenavItem({
+export default function NavItem({
   item,
   className,
 }: {
@@ -11,7 +11,7 @@ export default function SidenavItem({
   className: string;
 }) {
   return (
-    <li className={` items-center w-full ${className}`}>
+    <li className={`flex items-center w-full ${className}`}>
       <BarIcon
         color="text-neutral-dark"
         iconName={item.label}
@@ -21,7 +21,7 @@ export default function SidenavItem({
       />
       <Link
         href={item.href}
-        className="text-nav-item font-nav-item py-0.5 text-neutral-dark capitalize"
+        className="sm:text-nav-item font-nav-item py-0.5 sm:text-neutral-dark capitalize text-neutral-dark/70 text-label-xs "
       >
         {item.label}
       </Link>

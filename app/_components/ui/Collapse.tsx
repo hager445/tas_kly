@@ -1,22 +1,22 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import Button from "./Button";
 import Image from "next/image";
 
 export default function Collapse({
-  isOpened,
-  setIsOpened,
+  isExpandedSidebar,
+  setIsExpandedSidebar,
 }: {
-  isOpened: boolean;
-  setIsOpened: any;
+  isExpandedSidebar: boolean;
+  setIsExpandedSidebar: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
     <>
       <Button
-        onClick={() => setIsOpened((opened: boolean) => !opened)}
-        className="flex gap-3 items-center px-2.5 py-3"
+        onClick={() => setIsExpandedSidebar((opened: boolean) => !opened)}
+        className="sm:flex gap-3 items-center px-2.5 py-3 hidden"
         type="button"
       >
-        {isOpened ? (
+        {isExpandedSidebar ? (
           <Image
             src={"/icons/Container (4).png"}
             alt="collapse close icon"
@@ -31,7 +31,7 @@ export default function Collapse({
             height={20}
           />
         )}
-        {isOpened && (
+        {isExpandedSidebar && (
           <span className="text-nav-item font-nav-item capitalize text-neutral-dark">
             Collapse
           </span>

@@ -98,20 +98,22 @@ body {
 @utility primary-button {
   @apply w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-8 hover:bg-primary-container transition-colors duration-300;
 }
-@utility sidenav-closed {
+/* accordian list style */
+@utility sidebar-isCollapsed {
   @apply absolute flex-col gap-1 left-[calc(100%+19px)] top-0 p-2 w-61.5 rounded-tr-6 rounded-br-6 bg-surface-highest;
 }
-@utility sidenav-opened {
+@utility sidebar-notCollapsed {
   @apply w-full flex-col gap-1 bg-white px-4 py-2;
 }
-@utility navItem-closed {
-  @apply bg-surface-highest  gap-3 py-2.5 px-3;
+/* items style */
+@utility sidebarItem-isCollapsed {
+  @apply bg-surface-highest gap-3 py-2.5 px-3;
 }
-@utility navItem-opened {
-  @apply bg-surface-low  rounded-40 px-4 py-2;
+@utility sidebarItem-notCollapsed {
+  @apply bg-surface-low gap-3  rounded-40 px-4 py-2;
 }
 @utility navItem-bottomNavbar {
-  @apply flex-col gap-1   justify-between;
+  @apply flex-col gap-0.5   justify-between;
 }
 /* @utility navList-closed {
   @apply w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-8 hover:bg-primary-container transition-colors duration-300;

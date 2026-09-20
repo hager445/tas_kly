@@ -1,4 +1,5 @@
-import SidenavList from "./SidenavList";
+import NavList from "./NavList";
+
 const bottomList = [
   {
     label: "projects",
@@ -24,9 +25,9 @@ const bottomList = [
 export default function BottomNavbar() {
   return (
     <>
-      <SidenavList
-        style="gap-[7.12%] px-[30px] py-[15.5px] bg-surface-low"
-        itemStyle="flex navItem-bottomNavbar"
+      <NavList
+        className="gap-[7.12%] px-[30px] py-[15.5px] bg-surface-low"
+        itemClassName="flex navItem-bottomNavbar"
         menuList={bottomList}
       />
     </>

@@ -4,7 +4,8 @@ import { createContext, useContext, useState } from "react";
 
 type BurgerMenuContextType = {
   isOpenMenu: boolean;
-  toggleMenu: () => void;
+  openMenu: () => void;
+  closeMenu: () => void;
 };
 
 const BurgerMenuContext = createContext<BurgerMenuContextType | undefined>(
@@ -18,10 +19,12 @@ export function BurgerMenuProvider({
 }) {
   const [isOpenMenu, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen((prev) => !prev);
+  const closeMenu = () => setIsOpen(false);
+  const openMenu = () => setIsOpen(true);
+  // const closeMenu = () => setIsOpen(false);
 
   return (
-    <BurgerMenuContext.Provider value={{ isOpenMenu, toggleMenu }}>
+    <BurgerMenuContext.Provider value={{ isOpenMenu, closeMenu, openMenu }}>
       {children}
     </BurgerMenuContext.Provider>
   );

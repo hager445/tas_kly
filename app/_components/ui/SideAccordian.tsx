@@ -1,9 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SidenavList from "./SidenavList";
+import NavList from "./NavList";
+export type listItem = {
+  icon?: string;
+  label: string;
+  href: string;
+};
 import BarIcon from "./BarIcon";
-const accordianList = [
+const accordianList: listItem[] = [
   {
     icon: "/icons/Container (1).png",
     label: "epics",
@@ -25,19 +30,26 @@ const accordianList = [
     href: "/details",
   },
 ];
-export default function SideAccordian({ isOpened }: { isOpened: boolean }) {
-  // const [isOpened, setIsOpened] = useState(false);
+export default function SideAccordian({
+  isExpandedSidebar,
+}: {
+  isExpandedSidebar: boolean;
+}) {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <div className="pt-2.5">
       <div className={`pt-4 border-t-1 border-default } `}>
         <div className="rounded-6">
-          <div>
+          <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <button
-              className={`relative bg-surface-highest flex gap-3 items-center p-3 ${isOpened ? "w-full" : "w-fit"}   rounded-tl-6 rounded-tr-6`}
+              className={`curser-pointer relative bg-surface-highest flex gap-3 items-center p-3 ${isExpandedSidebar ? "w-full" : "w-fit"}   rounded-tl-6 rounded-tr-6`}
             >
               <BarIcon iconName="activeProject" width={16.6} height={14.16} />
 
-              {isOpened && (
+              {isExpandedSidebar && (
                 <>
                   <span className="text-active-side-item flex-1 min-w-0 truncate capitalize font-active-side-item text-neutral-dark">
                     active project link
@@ -47,19 +59,19 @@ export default function SideAccordian({ isOpened }: { isOpened: boolean }) {
                 </>
               )}
               {/* ============ show hover list */}
-              {!isOpened && (
-                <SidenavList
-                  itemStyle="navItem-closed"
-                  style="sidenav-closed"
+              {!isExpandedSidebar && (
+                <NavList
+                  itemClassName={` sidebarItem-isCollapsed`}
+                  className={`${isHovered ? "" : "hidden"} sidebar-isCollapsed`}
                   menuList={accordianList}
                 />
               )}
             </button>
           </div>
-          {isOpened && (
-            <SidenavList
-              style="sidenav-opened"
-              itemStyle="navItem-opened"
+          {isExpandedSidebar && (
+            <NavList
+              className="sidebar-notCollapsed"
+              itemClassName="sidebarItem-notCollapsed"
               menuList={accordianList}
             />
           )}

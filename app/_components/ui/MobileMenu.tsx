@@ -1,7 +1,7 @@
 "use client";
 
 import { useBurgerMenu } from "@/app/contexts/BurgerMenuContext";
-import Sidenavbar from "./Sidenavbar";
+import Sidenavbar from "./Sidebar";
 
 export default function MobileMenu() {
   const { isOpenMenu } = useBurgerMenu();

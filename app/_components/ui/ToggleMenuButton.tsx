@@ -1,12 +1,13 @@
 "use client";
 import BarIcon from "./BarIcon";
 import { useBurgerMenu } from "@/app/contexts/BurgerMenuContext";
+import Button from "./Button";
 
 export default function ToggleMenuButton() {
-  const { toggleMenu } = useBurgerMenu();
+  const { openMenu } = useBurgerMenu();
 
   return (
-    <button onClick={toggleMenu}>
+    <Button type="button" onClick={openMenu}>
       {" "}
       <BarIcon
         srcUrl={"/icons/Button.png"}
@@ -14,6 +15,6 @@ export default function ToggleMenuButton() {
         width={26}
         height={20}
       />
-    </button>
+    </Button>
   );
 }

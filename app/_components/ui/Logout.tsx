@@ -5,7 +5,11 @@ import logoutAction from "@/app/actions/auth/logoutAction";
 import { useState } from "react";
 import TextError from "../auth/TextError";
 
-export default function Logout({ isOpened }: { isOpened: boolean }) {
+export default function Logout({
+  isExpandedSidebar,
+}: {
+  isExpandedSidebar: boolean;
+}) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   async function handleLogout() {
@@ -36,7 +40,7 @@ export default function Logout({ isOpened }: { isOpened: boolean }) {
           width={18}
           height={18}
         />
-        {isOpened && (
+        {isExpandedSidebar && (
           <span className="text-nav-item font-nav-item capitalize text-error">
             logout
           </span>

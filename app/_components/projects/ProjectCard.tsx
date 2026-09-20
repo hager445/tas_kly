@@ -33,11 +33,11 @@ export default function ProjectCard({ project }: { project: Project }) {
           <p className="w-full line-clamp-3 text-center text-muted font-body-md text-body-md leading-[22.5px] ">
             {project.description}
           </p>
-          <div className="flex items-center justify-between  pt-4 w-full mt-auto mb-4">
+          <div className="flex items-center justify-between   pt-4 w-full mt-auto mb-4">
             {linkList.map((l) => {
               return (
                 <li
-                  className={`flex gap-1  items-center w-full `}
+                  className={`flex gap-1  items-center w-full justify-center `}
                   key={l.label}
                 >
                   <BarIcon

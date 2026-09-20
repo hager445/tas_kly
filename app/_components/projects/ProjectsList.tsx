@@ -3,18 +3,18 @@ import ProjectCard from "../../_components/projects/ProjectCard";
 import CreateNewProjectCard from "../../_components/projects/CreateNewProjectCard";
 
 import { Project } from "@/app/_types/Project";
+import { usePaginationContext } from "@/app/contexts/PaginationContext";
 export default function ProjectsList({
   projects,
-  startPoint,
-  endPoint,
   itemsPerPage,
-  // currentPage,
 }: {
   projects: Project[];
-  startPoint: number;
-  endPoint: number;
+
   itemsPerPage: number;
 }) {
+  const { currentPage } = usePaginationContext();
+  const startPoint = (currentPage - 1) * itemsPerPage;
+  const endPoint = currentPage * itemsPerPage;
   const paginatedProjects = projects?.slice(startPoint, endPoint);
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
