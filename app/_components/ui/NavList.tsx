@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import NavItem from "./NavItem";
-import { listItem } from "./SideAccordian";
+import { listItem } from "./ActiveProjectLink";
 
 export default function NavList({
   menuList,

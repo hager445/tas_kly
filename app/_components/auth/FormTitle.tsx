@@ -6,13 +6,13 @@ export default function FormTitle({
   subTitle,
   variant,
 }: {
-  variant: "authTitle" | "createNewProjectTitle";
+  variant: "authTitle" | "projectFormTitle";
   mainTitle: string;
   subTitle: string;
 }) {
   return (
     <div className=" flex flex-col justify-center">
-      <h2 className={formTitleVariants[variant].mainTitle}>{mainTitle}</h2>
+      <h2 className={`${formTitleVariants[variant].mainTitle}`}>{mainTitle}</h2>
       <p className={formTitleVariants[variant].subTitle}>{subTitle}</p>
     </div>
   );

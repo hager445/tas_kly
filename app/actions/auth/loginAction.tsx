@@ -15,5 +15,5 @@ export async function loginAction(formData: loginFormData) {
           : "Login failed, please try again.",
     };
   }
-  redirect("/dashboard");
+  redirect("/dashboard/projects");
 }

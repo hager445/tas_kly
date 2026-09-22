@@ -1,7 +1,7 @@
 export const formTitleVariants: {
   authTitle: { mainTitle: string; subTitle: string };
 
-  createNewProjectTitle: { mainTitle: string; subTitle: string };
+  projectFormTitle: { mainTitle: string; subTitle: string };
 } = {
   authTitle: {
     mainTitle:
@@ -9,8 +9,8 @@ export const formTitleVariants: {
     subTitle: "text-body-md font-body-md text-neutral-medium",
   },
 
-  createNewProjectTitle: {
-    mainTitle: " text-2xl font-display-lg  text-neutral-dark ",
+  projectFormTitle: {
+    mainTitle: " text-2xl font-display-lg text-neutral-dark capitalize",
     subTitle: "text-body-md font-body-md text-neutral-medium",
   },
 };

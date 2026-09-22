@@ -18,21 +18,23 @@ const menuList = [
 ];
 export default function SidebarMenuList({
   isExpandedSidebar,
+  className,
 }: {
-  isExpandedSidebar: boolean;
+  isExpandedSidebar?: boolean;
+  className?: string;
 }) {
   const pathname = usePathname();
   console.log(pathname);
 
   return (
-    <ul className="flex flex-col gap-1 w-full">
+    <ul className="flex  flex-col gap-1 w-full">
       {menuList.map((item) => {
         console.log(item.href);
 
         return (
           <Link key={item.icon} href={`${item.href}`}>
             <li
-              className={`cursor-pointer rounded-4 flex items-center gap-3 py-2.5 px-3 ${item.href.includes(pathname) ? "bg-white" : ""} `}
+              className={`cursor-pointer rounded-4 flex items-center gap-3 py-2.5 px-3 ${item.href.includes(pathname) ? "bg-white" : ""} ${className} `}
             >
               <Image
                 color="text-neutral-dark"
@@ -42,7 +44,7 @@ export default function SidebarMenuList({
                 height={16}
               />
               {isExpandedSidebar && (
-                <p className="text-nav-item font-nav-item py-0.5 text-neutral-dark capitalize">
+                <p className="sm:text-nav-item font-nav-item py-0.5 text-neutral-dark capitalize text-label-xs">
                   {" "}
                   {item.label}
                 </p>
