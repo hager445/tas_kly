@@ -1,4 +1,10 @@
-export async function EpicsPage({ params }) {
+export async function EpicsPage({
+  params,
+}: {
+  params: Promise<{
+    projectId: string;
+  }>;
+}) {
   const param = await params;
 
   console.log(param);
