@@ -1,26 +1,29 @@
 "use client";
-import { useForm, useFormContext } from "react-hook-form";
-import FormContainer from "../auth/FormContainer";
 
+import React, { useState } from "react";
+import FormContainer from "../auth/FormContainer";
+import ProjectInputsGroup from "./ProjectInputsGroup";
+import ProjectFormFooter from "./ProjectFormFooter";
+import { useForm } from "react-hook-form";
 import {
   projectFormData,
   projectValidationFormSchema,
 } from "@/app/_lib/schemas/projectValidationFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { createNewProjectAction } from "@/app/actions/dashboard/createNewProjectAction";
-import { useState } from "react";
 import { usePaginationContext } from "@/app/contexts/PaginationContext";
-import ProjectFormFooter from "./ProjectFormFooter";
-import ProjectInputsGroup from "./ProjectInputsGroup";
+import { useCurrentProjectContext } from "@/app/contexts/CurrentProjectContext";
+import { editCurrentProjectAction } from "@/app/actions/dashboard/editCurrentProjectAction";
 
-export default function CreateNewProjectForm() {
+export default function EditCurrentProjectForm() {
   const [creationErrorMessage, setCreationErrorMessage] = useState("");
   const [successState, setSuccessState] = useState("");
   const { currentPage } = usePaginationContext();
+  const { currentProject } = useCurrentProjectContext();
+  const project_id = currentProject?.id;
   const onSubmit = async (data: projectFormData) => {
+    if (!project_id) throw Error("Is invalid project ID ");
     try {
-      const res = await createNewProjectAction(data, currentPage);
+      const res = await editCurrentProjectAction(data, project_id, currentPage);
       if (!res.success) setCreationErrorMessage(res.message);
       setSuccessState(res.message);
     } catch (error) {
@@ -41,7 +44,8 @@ export default function CreateNewProjectForm() {
         variant="project"
       >
         <ProjectInputsGroup
-          mode="add"
+          currentProject={currentProject}
+          mode="edit"
           successState={successState}
           errorMessage={creationErrorMessage}
         />

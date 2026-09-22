@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createProjectValidationSchema = z.object({
+export const projectValidationFormSchema = z.object({
   name: z
     .string()
     .min(3, "Title's minimum length: 3 characters")
@@ -8,4 +8,4 @@ export const createProjectValidationSchema = z.object({
   description: z.string(),
 });
 
-export type newProjectFormData = z.infer<typeof createProjectValidationSchema>;
+export type projectFormData = z.infer<typeof projectValidationFormSchema>;

@@ -16,7 +16,7 @@ export default function FormContainer<T extends FieldValues>({
 }: {
   formMethods: UseFormReturn<T>;
   onSubmit: SubmitHandler<T>;
-  variant?: "signup" | "login" | "createNewProject";
+  variant?: "signup" | "login" | "project";
   children: React.ReactNode;
 }) {
   return (

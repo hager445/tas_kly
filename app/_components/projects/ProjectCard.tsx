@@ -1,33 +1,39 @@
-import React from "react";
+"use client";
 import BarIcon from "../ui/BarIcon";
-
 import { Project } from "@/app/_types/Project";
 import Link from "next/link";
 import { dateFormate } from "@/app/_lib/helpers/dateFormate";
 import { routes } from "@/app/_lib/routes/routes";
-const linkList = [
-  {
-    icon: "/icons/Container (1).png",
-    label: "epics",
-    href: "/epics",
-  },
-  {
-    icon: "/icons/Container (2).png",
-    label: "tasks",
-    href: "/tasks",
-  },
-  {
-    icon: "/icons/Container (3).png",
-    label: "members",
-
-    href: "/members",
-  },
-];
+import { useRouter } from "next/navigation";
 export default function ProjectCard({ project }: { project: Project }) {
+  const router = useRouter();
+  const project_id = project?.id;
+  const linkList = [
+    {
+      label: "epics",
+      href: `${routes.dashboard.projects.nestedRoutes.epics(project_id)}`,
+    },
+    {
+      label: "tasks",
+      href: `${routes.dashboard.projects.nestedRoutes.tasks(project_id)}`,
+    },
+    {
+      label: "members",
+      href: `${routes.dashboard.projects.nestedRoutes.members(project_id)}`,
+    },
+    {
+      label: "Edit",
+      href: `${routes.dashboard.projects.nestedRoutes.details(project_id)}`,
+    },
+  ];
   return (
-    <Link
-      href={`${routes.dashboard.projects.index}/${project.id}/epics`}
-      className="p-6 h-62 min-h-55  w-full rounded-8 bg-white overflow-hidden"
+    <div
+      onClick={() =>
+        router.push(
+          `${routes.dashboard.projects.nestedRoutes.epics(project_id)}`,
+        )
+      }
+      className="cursor-pointer p-6 h-62 min-h-55  w-full rounded-8 bg-white overflow-hidden"
     >
       <div className="flex flex-col justify-between h-full">
         <div className="w-full flex flex-col items-center gap-2 mx-auto flex-1 ">
@@ -37,7 +43,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           <p className="w-full line-clamp-3 text-center text-muted font-body-md text-body-md leading-[22.5px] ">
             {project.description}
           </p>
-          <div className="flex items-center justify-between   pt-4 w-full mt-auto mb-4">
+          <ul className="flex items-center justify-between   pt-4 w-full mt-auto mb-4">
             {linkList.map((l) => {
               return (
                 <li
@@ -47,10 +53,12 @@ export default function ProjectCard({ project }: { project: Project }) {
                   <BarIcon
                     iconName={l.label}
                     alt={l.label}
-                    width={20}
+                    width={18}
                     height={18}
                   />
                   <Link
+                    onClick={(e) => e.stopPropagation()}
+
                     href={l.href}
                     className="text-label-xs font-headline-md py-0.5 text-primary capitalize"
                   >
@@ -59,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 </li>
               );
             })}
-          </div>
+          </ul>
         </div>
         {/* ============== date */}
 
@@ -72,6 +80,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

@@ -9,24 +9,40 @@ import Button from "../ui/Button";
 
 import NavigateBack from "../ui/NavigateBack";
 import TextError from "../auth/TextError";
+import CancelButton from "../ui/CancelButton";
+import { Project } from "@/app/_types/Project";
+import { useEffect } from "react";
+import Spinner from "../ui/Spinner";
 
-export default function CreateNewProjectInputs({
-  creationErrorMessage,
+export default function ProjectInputsGroup({
+  mode,
+  currentProject,
+  errorMessage,
   successState,
 }: {
-  creationErrorMessage: string;
+  mode: "edit" | "add";
+  currentProject?: Project | null;
+  errorMessage: string;
   successState: string;
 }) {
   const {
     register,
+    setValues,
+    getValues,
     watch,
     formState: { errors, isSubmitting },
   } = useFormContext();
   const description = watch("description");
   const maxLength = 500;
   const hasErrors = Object.keys(errors).length > 0;
-  console.log(creationErrorMessage);
-
+  useEffect(() => {
+    if (!currentProject) return;
+    if (mode === "edit" && currentProject)
+      setValues({
+        name: currentProject?.name,
+        description: currentProject?.description,
+      });
+  }, [currentProject, setValues, mode]);
   return (
     <div className="flex flex-col  w-full pt-8  sm:px-8 px-6 ">
       <div className="flex gap-4 sm:pb-10 pb-8 items-center justify-center sm:border-b-1 border-b-surface-low  ">
@@ -35,8 +51,10 @@ export default function CreateNewProjectInputs({
         </div>
         <div className="text-left">
           <FormTitle
-            variant="createNewProjectTitle"
-            mainTitle="Initialize New Project"
+            variant={"projectFormTitle"}
+            mainTitle={
+              mode === "add" ? "Initialize New Project" : "edit project"
+            }
             subTitle="Define the scope and foundational details of your project."
           />
         </div>
@@ -88,15 +106,29 @@ export default function CreateNewProjectInputs({
             className="primary-button rounded-2 px-6 py-3 sm:w-fit w-full sm:order-2"
             type="submit"
           >
-            {isSubmitting ? "creating..." : "create project"}
+            {mode === "add" ? (
+              <span>{isSubmitting ? "creating..." : "create project"} </span>
+            ) : (
+              <span>{isSubmitting ? "saving..." : "save changes"} </span>
+            )}
           </Button>
           <div className="sm:order-1">
-            <NavigateBack />
+            {mode === "add" ? <NavigateBack /> : <CancelButton />}
           </div>
         </div>
-        {creationErrorMessage && (
+
+        {hasErrors && (
           <div className="py-8 w-auto text-center">
-            <TextError errorMessage={creationErrorMessage} />
+            <TextError
+              errorMessage={
+                "you can't save changesbefore inserting valid values first!"
+              }
+            />
+          </div>
+        )}
+        {errorMessage && (
+          <div className="py-8 w-auto text-center">
+            <TextError errorMessage={errorMessage} />
           </div>
         )}
         {/* <div className="py-8 w-auto text-center text-success">

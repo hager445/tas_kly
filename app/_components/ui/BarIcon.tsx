@@ -2,6 +2,11 @@ import Image from "next/image";
 import React from "react";
 const iconsList = [
   {
+    iconUrl: "/icons/Edit.png",
+    label: "Edit",
+    iconName: "Edit",
+  },
+  {
     iconUrl: "/icons/Plus.png",
     label: "Plus",
     iconName: "plus",

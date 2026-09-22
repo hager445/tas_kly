@@ -9,6 +9,8 @@ import Link from "next/link";
 
 export default async function page() {
   const projects: Project[] = await getProjects();
+  console.log(projects);
+
   if (projects.length === 0) return <EmptyState />;
   return (
     <div className="px-4">
