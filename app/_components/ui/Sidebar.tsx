@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import SidebarMenuList from "./SidebarMenuList";
-import SideAccordian from "./SideAccordian";
+import SideAccordian from "./ActiveProjectLink";
 import Logout from "./Logout";
 import Collapse from "./Collapse";
 import CloseMenuButton from "./CloseMenuButton";
+import ActiveProjectLink from "./ActiveProjectLink";
+
 export default function Sidebar() {
   const [isExpandedSidebar, setIsExpandedSidebar] = useState(true);
   //
@@ -26,7 +28,8 @@ export default function Sidebar() {
         className={`flex flex-col gap-1 ${isExpandedSidebar ? "sm:w-sidebar-item w-full" : "w-fit mx-auto"}`}
       >
         <SidebarMenuList isExpandedSidebar={isExpandedSidebar} />
-        <SideAccordian isExpandedSidebar={isExpandedSidebar} />
+        {/* <SideAccordian isExpandedSidebar={isExpandedSidebar} /> */}
+        <ActiveProjectLink isExpandedSidebar={isExpandedSidebar} />
       </div>
       <div className="mt-auto flex flex-col gap-1">
         <Collapse

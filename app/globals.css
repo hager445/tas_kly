@@ -113,7 +113,7 @@ body {
   @apply bg-surface-low gap-3  rounded-40 px-4 py-2;
 }
 @utility navItem-bottomNavbar {
-  @apply flex-col gap-0.5   justify-between;
+  @apply flex-col gap-0.5   justify-between py-1 rounded-2;
 }
 /* @utility navList-closed {
   @apply w-full cursor-pointer bg-linear-gradient text-white px-4 py-2 rounded-8 hover:bg-primary-container transition-colors duration-300;

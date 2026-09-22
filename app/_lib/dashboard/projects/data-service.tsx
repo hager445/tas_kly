@@ -45,11 +45,36 @@ export const getProjects = async () => {
   );
   const responseData = await req.json();
   if (!req.ok) {
-    console.log(!req.ok);
     throw new Error(
       responseData?.message ||
         responseData?.msg ||
         "Failed To Fetch Projects, Somthing went wrong",
+    );
+  }
+  return responseData;
+};
+export const getProjectByID = async (project_id: string) => {
+  const session = await getSession();
+  const req = await fetch(
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/rpc/get_projects?id=eq.${project_id}`,
+    {
+      method: "GET",
+
+      headers: {
+        apikey: process.env.SECRET_KEY!,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access_token}`,
+      },
+    },
+  );
+  const responseData = await req.json();
+  // console.log(responseData);
+
+  if (!req.ok) {
+    throw new Error(
+      responseData?.message ||
+        responseData?.msg ||
+        `Failed To Fetch Project with ID =>${project_id}, Somthing went wrong`,
     );
   }
   return responseData;

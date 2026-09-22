@@ -4,6 +4,7 @@ import BarIcon from "../ui/BarIcon";
 import { Project } from "@/app/_types/Project";
 import Link from "next/link";
 import { dateFormate } from "@/app/_lib/helpers/dateFormate";
+import { routes } from "@/app/_lib/routes/routes";
 const linkList = [
   {
     icon: "/icons/Container (1).png",
@@ -24,7 +25,10 @@ const linkList = [
 ];
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="p-6 h-62 min-h-55  w-full rounded-8 bg-white overflow-hidden">
+    <Link
+      href={`${routes.dashboard.projects.index}/${project.id}/epics`}
+      className="p-6 h-62 min-h-55  w-full rounded-8 bg-white overflow-hidden"
+    >
       <div className="flex flex-col justify-between h-full">
         <div className="w-full flex flex-col items-center gap-2 mx-auto flex-1 ">
           <h3 className="text-primary capitalize font-nav-item text-title-md">
@@ -68,6 +72,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

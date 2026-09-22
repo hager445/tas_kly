@@ -4,7 +4,6 @@ import React from "react";
 import Sidebar from "./Sidebar";
 
 import BottomNavbar from "./BottomNavbar";
-import MobileMenu from "./MobileMenu";
 
 export default function DashboardLayout({
   children,
@@ -30,7 +29,7 @@ export default function DashboardLayout({
           </div>
         </div>
       </div>
-      <MobileMenu />
+      {/* <MobileMenu /> */}
     </>
   );
 }
