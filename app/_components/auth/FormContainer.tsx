@@ -16,7 +16,8 @@ export default function FormContainer<T extends FieldValues>({
 }: {
   formMethods: UseFormReturn<T>;
   onSubmit: SubmitHandler<T>;
-  variant?: "signup" | "login" | "project";
+  variant?:
+    "signup" | "login" | "project" | "forgotPassword" | "createNewPassword";
   children: React.ReactNode;
 }) {
   return (
@@ -25,9 +26,9 @@ export default function FormContainer<T extends FieldValues>({
         onSubmit={formMethods.handleSubmit(onSubmit, (errors) => {
           console.log("VALIDATION ERRORS:", errors);
         })}
-        className={`flex flex-col  items-center gap-1 bg-white rounded-8  
+        className={`flex flex-col items-center gap-1   bg-white rounded-8 border-1 border-neutral-light/30
           ${variant ? formVariants[variant] : ""}
-         pb-18.5 `}
+         `}
       >
         {children}
       </form>

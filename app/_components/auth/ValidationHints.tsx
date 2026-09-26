@@ -1,3 +1,4 @@
+import { newPasswordFormData } from "@/app/_lib/schemas/createNewPasswordSchema";
 import {
   SignupFormData,
   validationSchema,
@@ -8,21 +9,22 @@ import { ZodIssue } from "zod";
 const defaultList = {
   password: {
     messages: [
-      "Password must be at least 8 characters",
-      // "Password must be at most 64 characters",
-      // "Password must not contain whitespace",
-      "Password must contain at least one uppercase letter",
-      "Password must contain at least one lowercase letter",
-      "Password must contain at least one numeric digit",
-      "Password must contain at least one special character",
+      " At least 8 characters",
+
+      "one uppercase letter",
+      "one lowercase letter",
+      "one numeric digit",
+      "one special character",
     ],
   },
 };
 
 export default function ValidationHints({
   watch,
+  className,
 }: {
-  watch: UseFormWatch<SignupFormData>;
+  watch: UseFormWatch<SignupFormData | newPasswordFormData>;
+  className?: string;
 }) {
   const labelName = watch();
   const result = validationSchema.safeParse(labelName);
@@ -39,7 +41,7 @@ export default function ValidationHints({
     };
   });
   return (
-    <div className="w-full rounded-8 p-4 bg-surface-lowest">
+    <div className={`w-full rounded-8 p-4 bg-surface-lowest ${className}`}>
       {displayedErrors.map((item) => (
         <div className="flex gap-1 items-center" key={item.message}>
           {item.isChecked ? (
@@ -47,7 +49,7 @@ export default function ValidationHints({
           ) : (
             <Circle className="text-neutral-light" size={11.6} />
           )}
-          <p className="text-[#434654] text-nowrap text-label-sm font-body-md">
+          <p className="text-[#434654] text-nowrap text-label-sm font-body-md capitalize">
             {item.message}
           </p>
         </div>
