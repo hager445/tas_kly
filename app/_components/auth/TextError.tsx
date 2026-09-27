@@ -8,9 +8,6 @@ export default function TextError({
   error?: any;
   name?: string;
 }) {
-  // console.log(errors);
-  // console.log(errors?.[name!]?.message);
-
   return (
     <span className="text-error text-left text-label-sm">
       {errorMessage || error?.message}

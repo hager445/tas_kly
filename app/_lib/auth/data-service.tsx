@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import { loginFormData } from "../schemas/loginValidationSchema";
 import { SignupFormData } from "../schemas/signupValidationSchema";
 import { redirect } from "next/navigation";
+import { forgotPasswordFormData } from "../schemas/forgotPasswordSchema";
+import { newPasswordFormData } from "../schemas/createNewPasswordSchema";
 type signupDataType = {
   email: string;
   password: string;
@@ -97,6 +99,49 @@ export const logout = async () => {
     throw new Error("Logout failed, please try again. ");
   }
   await removeCookie();
+};
+export const forgotPassword = async (data: forgotPasswordFormData) => {
+  const req = await fetch(
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/recover`,
+    {
+      method: "POST",
+      headers: {
+        apikey: process.env.SECRET_KEY!,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    },
+  );
+  const responseData = await req.json();
+
+  if (!req.ok) {
+    throw new Error("Sending your email failed, please try again. ");
+  }
+  return responseData;
+};
+export const createNewPassword = async (data: newPasswordFormData) => {
+  const session = await getCookie();
+  if (!session) {
+    throw new Error("Session does not exist");
+  }
+  const req = await fetch(
+    `${process.env.NEXT_PUBLIC_SUPABASE_URL}/auth/v1/user`,
+    {
+      method: "PUT",
+      headers: {
+        apikey: process.env.SECRET_KEY!,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({ password: data.password }),
+    },
+  );
+  const responseData = await req.json();
+
+  if (!req.ok) {
+    throw new Error("Creating New Password failed, please try again. ");
+  }
+  return responseData;
 };
 // =====user  ==============
 export const getUser = async () => {

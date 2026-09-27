@@ -1,5 +1,7 @@
+import CreateNewPasswordForm from "@/app/_components/auth/CreateNewPasswordForm";
+
 export function ResetPasswordPage() {
-  return <main />;
+  return <CreateNewPasswordForm />;
 }
 
 export default ResetPasswordPage;

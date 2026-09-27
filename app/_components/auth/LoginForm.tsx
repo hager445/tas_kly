@@ -49,20 +49,20 @@ export default function LoginForm() {
           subTitle="Please enter your details to access your workspace"
         />
       </div>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 w-full">
         <Input
-          className="sm:w-120 w-full rounded-md "
+          className=" w-full rounded-md "
           label="email"
           name="email"
           type="email"
           placeholder="enter your email address"
         />
         <PasswordInput />
-        <div className="flex justify-between items-center py-2">
+        <div className="flex justify-between items-center py-2 w-full">
           <RememberMe />
           <Link
             className={`text-primary text-body-md font-title-sm hover:underline`}
-            href="/auth/forgotPassword"
+            href="/auth/forgotpassword"
           >
             Forgot Password?
           </Link>

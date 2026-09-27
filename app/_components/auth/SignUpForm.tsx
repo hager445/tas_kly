@@ -2,7 +2,6 @@
 import FormContainer from "./FormContainer";
 import FormTitle from "./FormTitle";
 
-import Button from "../ui/Button";
 import AuthPrompt from "./AuthPrompt";
 
 import InputsGroup from "./SignupInputsGroup";
@@ -13,21 +12,20 @@ import {
 import { signupAction } from "@/app/actions/auth/signupAction";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
 
 export default function SignUpForm() {
   const onSubmit = async (data: SignupFormData) => {
     try {
-      const res = await signupAction(data);
-      if (res) {
-        redirect("/auth/login");
-      }
-    } catch {}
+      await signupAction(data);
+    } catch (error) {
+      throw error;
+    }
   };
   const formMethods = useForm<SignupFormData>({
     resolver: zodResolver(validationSchema),
     mode: "onTouched",
   });
+
   return (
     <FormContainer
       formMethods={formMethods}
@@ -42,9 +40,7 @@ export default function SignUpForm() {
         />
       </div>
       <InputsGroup />
-      <Button className="primary-button" type="submit">
-        Create Account
-      </Button>
+
       {/* ============ redirect link============= */}
       <AuthPrompt
         to="/auth/login"

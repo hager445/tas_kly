@@ -1,6 +1,8 @@
 import React from "react";
 import BarIcon from "./BarIcon";
 import Button from "./Button";
+import Link from "next/link";
+import { routes } from "@/app/_lib/routes/routes";
 
 export default function EmptyState() {
   return (
@@ -17,9 +19,11 @@ export default function EmptyState() {
           architectural workspace to begin tracking tasks and epics.
         </p>
       </div>
-      <Button type="button" className="primary-button w-1/2 rounded-4">
-        Create New Project
-      </Button>
+      <Link href={routes.dashboard.projects.add} className="w-1/2">
+        <Button type="button" className="primary-button w-full rounded-4">
+          Create New Project
+        </Button>
+      </Link>
     </div>
   );
 }

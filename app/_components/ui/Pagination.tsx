@@ -16,9 +16,10 @@ export default function Pagination({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const staticPaginationButtonsLength = 3;
   const { currentPage, setCurrentPage } = usePaginationContext();
   console.log(currentPage);
+  // setCurrentPage(5);
+  const staticPaginationButtonsLength = currentPage < 3 ? currentPage : 3;
 
   const numberOfPages = Math.ceil(listLength / itemsPerPage);
   const paginationButtons = Array.from(
@@ -116,15 +117,17 @@ export default function Pagination({
         )}
         {/* ============ */}
 
-        <PageButton
-          page={lastIndex + 1}
-          isActive={currentPage === lastIndex + 1}
-          onClick={() => setCurrentPage(lastIndex + 1)}
-        />
+        {showRightDots && (
+          <PageButton
+            page={lastIndex + 1}
+            isActive={currentPage === lastIndex + 1}
+            onClick={() => setCurrentPage(lastIndex + 1)}
+          />
+        )}
 
         <button type="button" className="cursor-pointer" onClick={moveToRight}>
           <div className="w-8 h-8 rounded-2 border-1 border-neutral-light/30 flex items-center justify-center">
-            <BarIcon iconName="ArrowRight" width={4.32} height={7} />
+            <BarIcon iconName="ArrowRightBox" width={4.32} height={7} />
           </div>
         </button>
       </div>

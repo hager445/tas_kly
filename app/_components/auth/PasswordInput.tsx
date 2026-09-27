@@ -3,13 +3,17 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import Input from "./Input";
 
-export default function PasswordInput() {
+export default function PasswordInput({
+  inputClassName,
+}: {
+  inputClassName?: string;
+}) {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <>
-      <div className="relative">
+      <div className="relative w-full">
         <Input
-          className=" w-full rounded-md "
+          className={`w-full rounded-md ${inputClassName}`}
           label="password"
           name="password"
           type={showPassword ? "text" : "password"}

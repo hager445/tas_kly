@@ -5,11 +5,16 @@ export default async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const cookie = req.cookies.get("auth_session");
   const pathname = req.nextUrl.pathname;
-  if (pathname.startsWith("/auth/login")) return res;
-  if (!cookie) {
+
+  if (!pathname.startsWith("/auth") && !cookie) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
+
+  if (!cookie) {
+    return;
+  }
   const session = JSON.parse(cookie.value);
+
   if (!session) {
     throw new Error("Session is not Exist!");
   }
